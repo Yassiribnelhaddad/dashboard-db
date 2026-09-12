@@ -62,6 +62,23 @@ export default function App() {
       <TagFilter tage={tage} aktiv={tag} onWechsel={setTag} />
 
       {gruppenDaten.length > 0 && <GruppenChart daten={gruppenDaten} />}
+
+            <footer>
+        <p>
+          Daten:{" "}
+          <a href="https://huggingface.co/datasets/piebro/deutsche-bahn-data" target="_blank" rel="noreferrer">
+            piebro/deutsche-bahn-data
+          </a>{" "}
+          (Deutsche Bahn, Lizenz CC BY 4.0)
+        </p>
+        <p>
+          Analyse mit SQL und Python:{" "}
+          <a href="https://github.com/Yassiribnelhaddad/verspaetung-db" target="_blank" rel="noreferrer">
+            github.com/Yassiribnelhaddad/verspaetung-db
+          </a>
+        </p>
+      </footer>
+
     </div>
   );
 }

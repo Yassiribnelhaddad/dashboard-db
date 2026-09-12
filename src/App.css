@@ -92,3 +92,19 @@ header p {
   border-color: #2a78d6;
   color: #fff;
 }
+footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid #e1e0d9;
+  font-size: 0.85rem;
+  color: #52514e;
+}
+
+footer p {
+  margin: 4px 0;
+}
+
+footer a {
+  color: #2a78d6;
+}
+
