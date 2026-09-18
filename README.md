@@ -20,7 +20,7 @@ Die Daten habe ich mit SQL und Python analysiert und als JSON exportiert. Die An
 - Diagramm mit der Pünktlichkeit nach Zuggruppe (Fernverkehr, Regional, S-Bahn)
 - Filter nach Wochentag: Die Kennzahlen und das Diagramm ändern sich mit
 
-## Werkzeuge
+## Was ich benutzt habe:
 
 React, Vite, Recharts, Vercel
 
