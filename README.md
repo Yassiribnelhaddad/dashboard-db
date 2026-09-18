@@ -1,16 +1,39 @@
-# React + Vite
+# Dashboard zur Zugpünktlichkeit
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Ein kleines Dashboard, das die Ergebnisse meiner Datenanalyse zeigt: Wie pünktlich sind die Züge am Frankfurt (Main) Hbf?
 
-Currently, two official plugins are available:
+**Live:** https://dashboard-db-henna.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Screenshot vom Dashboard](dashboard.png)
 
-## React Compiler
+## Daten
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Zeitraum: Montag, 6. bis Sonntag, 12. Oktober 2025
+- 13.055 Halte am Frankfurt (Main) Hbf
+- Quelle: [piebro/deutsche-bahn-data](https://huggingface.co/datasets/piebro/deutsche-bahn-data) (Deutsche Bahn, Lizenz CC BY 4.0)
 
-## Expanding the Oxlint configuration
+Die Daten habe ich mit SQL und Python analysiert und als JSON exportiert. Die Analyse liegt in diesem Projekt: [verspaetung-db](https://github.com/Yassiribnelhaddad/verspaetung-db)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Funktionen
+
+- Vier Kennzahlen: pünktlich, verspätet, ausgefallen und mittlere Verspätung
+- Diagramm mit der Pünktlichkeit nach Zuggruppe (Fernverkehr, Regional, S-Bahn)
+- Filter nach Wochentag: Die Kennzahlen und das Diagramm ändern sich mit
+
+## Werkzeuge
+
+React, Vite, Recharts, Vercel
+
+## Projekt starten
+
+```
+npm install
+npm run dev
+```
+
+## Was ich gelernt habe
+
+- Daten aus SQL als JSON exportieren und im Frontend laden
+- Zustand mit React verwalten (`useState`, `useEffect`)
+- Diagramme mit Recharts bauen
+- Eine Seite mit Vercel veröffentlichen
