@@ -4,6 +4,8 @@ import {
 } from "recharts";
 
 export default function GruppenChart({ daten }) {
+  const fv = daten.find((d) => d.zuggruppe === "Fernverkehr");
+
   return (
     <section className="block">
       <h2>Welche Züge sind am unpünktlichsten?</h2>
@@ -25,7 +27,11 @@ export default function GruppenChart({ daten }) {
         </BarChart>
       </ResponsiveContainer>
 
-      <p className="hinweis">Nur jeder zweite Fernzug war pünktlich.</p>
+      {fv && (
+        <p className="hinweis">
+          Im Fernverkehr waren {fv.prozent_pkt.toLocaleString("de-DE")} % der Züge pünktlich.
+        </p>
+      )}
     </section>
   );
 }

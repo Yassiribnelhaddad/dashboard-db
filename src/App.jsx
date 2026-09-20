@@ -19,17 +19,20 @@ export default function App() {
   const [gruppenTage, setGruppenTage] = useState([]);
   const [tage, setTage] = useState([]);
   const [tag, setTag] = useState("woche");
+  const [zeitraum, setZeitraum] = useState("2025");
   const [kennzahlenTage, setKennzahlenTage] = useState([]);
 
 
-  useEffect(() => {
-    fetch("/data/kennzahlen.json").then((r) => r.json()).then((d) => setKennzahlen(d[0]));
-    fetch("/data/gruppen.json").then((r) => r.json()).then(setGruppen);
-    fetch("/data/gruppen_tage.json").then((r) => r.json()).then(setGruppenTage);
-    fetch("/data/tage.json").then((r) => r.json()).then(setTage);
-    fetch("/data/kennzahlen_tage.json").then((r) => r.json()).then(setKennzahlenTage);
+useEffect(() => {
+  const s = zeitraum === "2026" ? "_2026" : "";
+  fetch(`/data/kennzahlen${s}.json`).then((r) => r.json()).then((d) => setKennzahlen(d[0]));
+  fetch(`/data/gruppen${s}.json`).then((r) => r.json()).then(setGruppen);
+  fetch(`/data/gruppen_tage${s}.json`).then((r) => r.json()).then(setGruppenTage);
+  fetch(`/data/tage${s}.json`).then((r) => r.json()).then(setTage);
+  fetch(`/data/kennzahlen_tage${s}.json`).then((r) => r.json()).then(setKennzahlenTage);
+  setTag("woche");
+}, [zeitraum]);
 
-  }, []);
 
   if (!kennzahlen ) return <p>Lade Daten …</p>;
 
@@ -43,13 +46,28 @@ export default function App() {
 
   return (
     <div className="seite">
-      <header>
-        <h1>Pünktlichkeit am Frankfurter Hauptbahnhof</h1>
-        <p>
-          6. – 12. Oktober 2025 ·{" "}
-          {kz.halte_gesamt.toLocaleString("de-DE")} Halte
-        </p>
-      </header>
+         <header>
+              <h1>Pünktlichkeit am Frankfurter Hauptbahnhof</h1>
+                  <p>
+                  {zeitraum === "2025" ? "6. – 12. Oktober 2025" : "3. – 9. August 2026"} ·{" "}
+                  {kz.halte_gesamt.toLocaleString("de-DE")} Halte
+                  </p>
+        </header>
+
+        <div className="filter">
+  <button
+    className={zeitraum === "2025" ? "aktiv" : ""}
+    onClick={() => setZeitraum("2025")}
+  >
+    Oktober 2025
+  </button>
+  <button
+    className={zeitraum === "2026" ? "aktiv" : ""}
+    onClick={() => setZeitraum("2026")}
+  >
+    August 2026
+  </button>
+</div>
 
       <section className="kennzahlen">
               <KennzahlKarte wert={kz.prozent_puenktlich.toLocaleString("de-DE") + " %"} titel="pünktlich" />
